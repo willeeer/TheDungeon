@@ -70,6 +70,17 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
 
    }
 
+   @Override
+   public void listar() {
+      for (Personagem p : this.listaPersonagens)
+      {
+
+         System.out.println(p.getDescricaoPersonagem());
+
+      }
+
+   }
+
    public List<Personagem> getListaPersonagens()
    {
       return listaPersonagens;

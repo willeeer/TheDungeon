@@ -1,10 +1,18 @@
 package com.willer.thedungeon.personagem.heroi;
 
-import com.willer.thedungeon.personagem.IMagias;
 import com.willer.thedungeon.personagem.Personagem;
 
-public class Arcanista extends Personagem implements IMagias
+public class Arcanista extends Personagem
 {
+
+   public Arcanista(Integer id, String nome) {
+      super(id, nome);
+      setForca(10);
+      setAgilidade(7);
+      setInteligencia(15);
+      setVidaAtual(100);
+      setVidaMaxima(100);
+   }
 
    @Override
    public Integer getAtributoPrincipal()
@@ -19,5 +27,10 @@ public class Arcanista extends Personagem implements IMagias
       setForca(getForca() + 3);
       setAgilidade(getAgilidade() + 2);
       setInteligencia(getInteligencia() + 5);
+   }
+
+   @Override
+   public String getDescricaoPersonagem() {
+      return "Arcanista: " + getNome() + "Nivel: " + getNivel();
    }
 }

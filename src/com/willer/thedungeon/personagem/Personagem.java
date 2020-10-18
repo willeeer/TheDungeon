@@ -1,5 +1,7 @@
 package com.willer.thedungeon.personagem;
 
+import com.willer.thedungeon.magias.IMagias;
+
 public abstract class Personagem
 {
 
@@ -12,8 +14,19 @@ public abstract class Personagem
    private Integer vidaMaxima;
    private Integer vidaAtual;
 
+   public Personagem() {
+   }
+
+   public Personagem(Integer id, String nome) {
+      this.id = id;
+      this.nome = nome;
+      this.nivel = 1;
+   }
+
    public abstract Integer getAtributoPrincipal();
    public abstract void aumentarNivel();
+   public abstract String getDescricaoPersonagem();
+
 
    public Integer calculaAtaque()
    {
@@ -104,4 +117,5 @@ public abstract class Personagem
    {
       this.vidaAtual = vidaAtual;
    }
+
 }
