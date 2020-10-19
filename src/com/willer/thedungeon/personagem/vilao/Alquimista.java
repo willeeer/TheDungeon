@@ -6,6 +6,11 @@ public class Alquimista extends Personagem
 {
    public Alquimista(Integer id, String nome) {
       super(id, nome);
+      setForca(10);
+      setAgilidade(7);
+      setInteligencia(15);
+      setVidaAtual(100);
+      setVidaMaxima(100);
    }
 
    @Override
@@ -19,7 +24,7 @@ public class Alquimista extends Personagem
 
    @Override
    public String getDescricaoPersonagem() {
-      return "Alquimista: " + getNome() + "Nivel: " + getNivel();
+      return "Alquimista: " + getNome() + "\nNivel: " + getNivel();
    }
 
    @Override

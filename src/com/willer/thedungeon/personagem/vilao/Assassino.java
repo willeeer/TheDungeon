@@ -7,6 +7,11 @@ public class Assassino extends Personagem {
 
     public Assassino(Integer id, String nome) {
         super(id, nome);
+        setForca(7);
+        setAgilidade(15);
+        setInteligencia(10);
+        setVidaAtual(100);
+        setVidaMaxima(100);
     }
 
     @Override
@@ -25,6 +30,6 @@ public class Assassino extends Personagem {
 
     @Override
     public String getDescricaoPersonagem() {
-        return "Assassino: " + getNome() + "Nivel: " + getNivel();
+        return "Assassino: " + getNome() + "\nNivel: " + getNivel();
     }
 }

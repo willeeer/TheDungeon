@@ -2,3 +2,5 @@
 .metadata/
 
 .idea/vcs.xml
+
+*.class

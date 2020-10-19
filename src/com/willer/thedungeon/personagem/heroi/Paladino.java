@@ -44,6 +44,6 @@ public class Paladino extends Personagem
 
    @Override
    public String getDescricaoPersonagem() {
-      return "Paladino: " + getNome() + "Nivel: " + getNivel();
+      return "Paladino: " + getNome() + "\nNivel: " + getNivel();
    }
 }

@@ -7,6 +7,11 @@ public class DungeonMaster extends Personagem
 
    public DungeonMaster(Integer id, String nome) {
       super(id, nome);
+      setForca(15);
+      setAgilidade(7);
+      setInteligencia(7);
+      setVidaAtual(100);
+      setVidaMaxima(100);
    }
 
    @Override
@@ -26,6 +31,6 @@ public class DungeonMaster extends Personagem
 
    @Override
    public String getDescricaoPersonagem() {
-      return "DungeonMaster: " + getNome() + "Nivel: " + getNivel();
+      return "DungeonMaster: " + getNome() + "\nNivel: " + getNivel();
    }
 }

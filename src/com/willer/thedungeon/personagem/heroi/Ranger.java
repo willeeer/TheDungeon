@@ -39,6 +39,6 @@ public class Ranger extends Personagem
 
    @Override
    public String getDescricaoPersonagem() {
-      return "Ranger: " + getNome() + "Nivel: " + getNivel();
+      return "Ranger: " + getNome() + "\nNivel: " + getNivel();
    }
 }
