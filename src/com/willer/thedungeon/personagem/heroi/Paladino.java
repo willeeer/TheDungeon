@@ -1,18 +1,18 @@
 package com.willer.thedungeon.personagem.heroi;
 
-import com.willer.thedungeon.magias.Magia;
 import com.willer.thedungeon.personagem.Personagem;
 
 public class Paladino extends Personagem
 {
 
-   public Paladino(Integer id, String nome) {
-      super(id, nome);
-      setForca(15);
+   public Paladino(String nome)
+   {
+      super(nome);
+      setForca(20);
       setAgilidade(7);
-      setInteligencia(7);
-      setVidaAtual(100);
-      setVidaMaxima(100);
+      setInteligencia(4);
+      setVidaAtual(150);
+      setVidaMaxima(150);
    }
 
    @Override
@@ -40,10 +40,41 @@ public class Paladino extends Personagem
       setForca(getForca() + 5);
       setAgilidade(getAgilidade() + 2);
       setInteligencia(getInteligencia() + 2);
+      setVidaMaxima(getVidaMaxima() + getAtributoPrincipal() * 2);
+      setVidaAtual(getVidaMaxima());
    }
 
    @Override
-   public String getDescricaoPersonagem() {
-      return "Paladino: " + getNome() + "\nNivel: " + getNivel();
+   public String getDescricaoPersonagem()
+   {
+      return "-------------------------\n"
+               + "Paladino: " + getNome() + "\n"
+               + "Nivel: " + getNivel() + "\n"
+               + "ID: " + getId() + "\n"
+               + "-------------------------\n";
+   }
+
+   @Override
+   public String getNomeMagiaPrincipal()
+   {
+      return "Magia Principal Paladino";
+   }
+
+   @Override
+   public Integer getForcaMagiaPrincipal()
+   {
+      return calculaAtaque() + getAtributoPrincipal();
+   }
+
+   @Override
+   public String getNomeMagiaEspecial()
+   {
+      return "Magia Especial Paladino";
+   }
+
+   @Override
+   public Integer getForcaMagiaEspecial()
+   {
+      return calculaAtaque() + (getAtributoPrincipal() * 2) - 10 * getNivel();
    }
 }

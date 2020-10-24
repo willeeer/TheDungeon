@@ -2,7 +2,7 @@ package com.willer.thedungeon.personagem;
 
 import com.willer.thedungeon.magias.IMagias;
 
-public abstract class Personagem
+public abstract class Personagem implements IMagias
 {
 
    private Integer id;
@@ -14,19 +14,22 @@ public abstract class Personagem
    private Integer vidaMaxima;
    private Integer vidaAtual;
 
-   public Personagem() {
-   }
+   private static Integer ID_PERSONAGEM = 1;
 
-   public Personagem(Integer id, String nome) {
-      this.id = id;
+   public Personagem(String nome)
+   {
+      this.id = ID_PERSONAGEM;
       this.nome = nome;
       this.nivel = 1;
+
+      ID_PERSONAGEM++;
    }
 
    public abstract Integer getAtributoPrincipal();
-   public abstract void aumentarNivel();
-   public abstract String getDescricaoPersonagem();
 
+   public abstract void aumentarNivel();
+
+   public abstract String getDescricaoPersonagem();
 
    public Integer calculaAtaque()
    {
@@ -116,6 +119,66 @@ public abstract class Personagem
    public void setVidaAtual(Integer vidaAtual)
    {
       this.vidaAtual = vidaAtual;
+   }
+
+   public boolean isVivo()
+   {
+      //se vida Atual >0 o personagem está vivo, retorna true
+      return vidaAtual > 0;
+   }
+
+   public String recuperaListaDeAtaques()
+   {
+      return "-------------------------\n" +
+               "1- Ataque Normal \n" +
+               "2- " + getNomeMagiaPrincipal() + "\n" +
+               "3- " + getNomeMagiaEspecial() + "\n" +
+               "-------------------------\n";
+   }
+
+   public static boolean isIndiceValidoDeAtaque(Integer indice)
+   {
+      return indice == 1 || indice == 2 || indice == 3;
+   }
+
+   public Integer getAtaqueMagiaEscolhida(Integer indice)
+   {
+      if (indice == 1)
+      {
+         return calculaAtaque();
+      }
+      else if (indice == 2)
+      {
+         return getForcaMagiaPrincipal();
+      }
+      else if (indice == 3)
+      {
+         return getForcaMagiaEspecial();
+      }
+      else
+      {
+         return 0;
+      }
+   }
+
+   public String getNomeMagiaEscolhida(Integer indice)
+   {
+      if (indice == 1)
+      {
+         return "Ataque básico";
+      }
+      else if (indice == 2)
+      {
+         return getNomeMagiaPrincipal();
+      }
+      else if (indice == 3)
+      {
+         return getNomeMagiaEspecial();
+      }
+      else
+      {
+         return "";
+      }
    }
 
 }

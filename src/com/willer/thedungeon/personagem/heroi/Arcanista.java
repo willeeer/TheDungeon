@@ -5,11 +5,12 @@ import com.willer.thedungeon.personagem.Personagem;
 public class Arcanista extends Personagem
 {
 
-   public Arcanista(Integer id, String nome) {
-      super(id, nome);
-      setForca(10);
+   public Arcanista(String nome)
+   {
+      super(nome);
+      setForca(8);
       setAgilidade(7);
-      setInteligencia(15);
+      setInteligencia(23);
       setVidaAtual(100);
       setVidaMaxima(100);
    }
@@ -27,10 +28,38 @@ public class Arcanista extends Personagem
       setForca(getForca() + 3);
       setAgilidade(getAgilidade() + 2);
       setInteligencia(getInteligencia() + 5);
+      setVidaMaxima(getVidaMaxima() + getAtributoPrincipal() * 2);
+      setVidaAtual(getVidaMaxima());
+      ;
    }
 
    @Override
-   public String getDescricaoPersonagem() {
+   public String getDescricaoPersonagem()
+   {
       return "Arcanista: " + getNome() + "\nNivel: " + getNivel();
+   }
+
+   @Override
+   public String getNomeMagiaPrincipal()
+   {
+      return "Magia Principal Arcanista";
+   }
+
+   @Override
+   public Integer getForcaMagiaPrincipal()
+   {
+      return calculaAtaque() + getAtributoPrincipal();
+   }
+
+   @Override
+   public String getNomeMagiaEspecial()
+   {
+      return "Magia Especial Arcanista";
+   }
+
+   @Override
+   public Integer getForcaMagiaEspecial()
+   {
+      return calculaAtaque() + getAtributoPrincipal() * 2;
    }
 }

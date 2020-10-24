@@ -1,12 +1,11 @@
 package com.willer.thedungeon.personagem.vilao;
 
-import com.willer.thedungeon.personagem.Personagem;
-
-public class DungeonMaster extends Personagem
+public class DungeonMaster extends Vilao
 {
 
-   public DungeonMaster(Integer id, String nome) {
-      super(id, nome);
+   public DungeonMaster(String nome)
+   {
+      super(nome);
       setForca(15);
       setAgilidade(7);
       setInteligencia(7);
@@ -27,10 +26,37 @@ public class DungeonMaster extends Personagem
       setForca(getForca() + 5);
       setAgilidade(getAgilidade() + 2);
       setInteligencia(getInteligencia() + 2);
+      setVidaMaxima(getVidaMaxima() + getAtributoPrincipal()*2);
+      setVidaAtual(getVidaMaxima());
    }
 
    @Override
-   public String getDescricaoPersonagem() {
+   public String getDescricaoPersonagem()
+   {
       return "DungeonMaster: " + getNome() + "\nNivel: " + getNivel();
+   }
+
+   @Override
+   public String getNomeMagiaPrincipal()
+   {
+      return "Magia Principal Arcanista";
+   }
+
+   @Override
+   public Integer getForcaMagiaPrincipal()
+   {
+      return calculaAtaque() + getAtributoPrincipal();
+   }
+
+   @Override
+   public String getNomeMagiaEspecial()
+   {
+      return "Magia Especial Arcanista";
+   }
+
+   @Override
+   public Integer getForcaMagiaEspecial()
+   {
+      return calculaAtaque() + getAtributoPrincipal() * 3;
    }
 }

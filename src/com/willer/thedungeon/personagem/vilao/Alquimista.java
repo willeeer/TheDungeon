@@ -1,11 +1,11 @@
 package com.willer.thedungeon.personagem.vilao;
 
-import com.willer.thedungeon.personagem.Personagem;
-
-public class Alquimista extends Personagem
+public class Alquimista extends Vilao
 {
-   public Alquimista(Integer id, String nome) {
-      super(id, nome);
+
+   public Alquimista(String nome)
+   {
+      super(nome);
       setForca(10);
       setAgilidade(7);
       setInteligencia(15);
@@ -20,11 +20,18 @@ public class Alquimista extends Personagem
       setForca(getForca() + 3);
       setAgilidade(getAgilidade() + 2);
       setInteligencia(getInteligencia() + 5);
+      setVidaMaxima(getVidaMaxima() + getAtributoPrincipal()*2);
+      setVidaAtual(getVidaMaxima());
    }
 
    @Override
-   public String getDescricaoPersonagem() {
-      return "Alquimista: " + getNome() + "\nNivel: " + getNivel();
+   public String getDescricaoPersonagem()
+   {
+      return "-------------------------\n"
+               + "Alquimista: " + getNome() + "\n"
+               + "Nivel: " + getNivel() + "\n"
+               + "ID: " + getId() + "\n"
+               + "-------------------------\n";
    }
 
    @Override
@@ -32,4 +39,29 @@ public class Alquimista extends Personagem
    {
       return getInteligencia();
    }
+
+   @Override
+   public String getNomeMagiaPrincipal()
+   {
+      return "Magia Principal Alquimista";
+   }
+
+   @Override
+   public Integer getForcaMagiaPrincipal()
+   {
+      return calculaAtaque() + getInteligencia();
+   }
+
+   @Override
+   public String getNomeMagiaEspecial()
+   {
+      return "Magia Especial Alquimista";
+   }
+
+   @Override
+   public Integer getForcaMagiaEspecial()
+   {
+      return calculaAtaque() + getInteligencia() * 2;
+   }
+
 }

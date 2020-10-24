@@ -2,79 +2,219 @@ package com.willer.thedungeon.geral;
 
 import com.willer.thedungeon.personagem.Personagem;
 
-public class Grupo {
+import java.util.Arrays;
+import java.util.List;
 
-    private Personagem integranteUm;
-    private Personagem integranteDois;
-    private Personagem integranteTres;
+public class Grupo
+{
 
-    public Grupo(Personagem integranteUm, Personagem integranteDois, Personagem integranteTres) {
-        this.integranteUm = integranteUm;
-        this.integranteDois = integranteDois;
-        this.integranteTres = integranteTres;
-    }
+   private Personagem integranteUm;
+   private Personagem integranteDois;
+   private Personagem integranteTres;
 
-    public Grupo() {
-    }
+   private static final List<Integer> inidicesValidos = Arrays.asList(1, 2, 3);
 
-    public Personagem getIntegranteUm() {
-        return integranteUm;
-    }
+   public Grupo(Personagem integranteUm, Personagem integranteDois, Personagem integranteTres)
+   {
+      this.integranteUm = integranteUm;
+      this.integranteDois = integranteDois;
+      this.integranteTres = integranteTres;
+   }
 
-    public void setIntegranteUm(Personagem integranteUm) {
-        this.integranteUm = integranteUm;
-    }
+   public Grupo()
+   {
+   }
 
-    public Personagem getIntegranteDois() {
-        return integranteDois;
-    }
+   public Personagem getIntegranteUm()
+   {
+      return integranteUm;
+   }
 
-    public void setIntegranteDois(Personagem integranteDois) {
-        this.integranteDois = integranteDois;
-    }
+   public void setIntegranteUm(Personagem integranteUm)
+   {
+      this.integranteUm = integranteUm;
+   }
 
-    public Personagem getIntegranteTres() {
-        return integranteTres;
-    }
+   public Personagem getIntegranteDois()
+   {
+      return integranteDois;
+   }
 
-    public void setIntegranteTres(Personagem integranteTres) {
-        this.integranteTres = integranteTres;
-    }
+   public void setIntegranteDois(Personagem integranteDois)
+   {
+      this.integranteDois = integranteDois;
+   }
 
-    public String getDescricaoGrupo() {
-        return "------------------------------------------" +
-                integranteUm.getDescricaoPersonagem() +
-                integranteDois.getDescricaoPersonagem() +
-                integranteTres.getDescricaoPersonagem() +
-                "------------------------------------------";
+   public Personagem getIntegranteTres()
+   {
+      return integranteTres;
+   }
 
-    }
+   public void setIntegranteTres(Personagem integranteTres)
+   {
+      this.integranteTres = integranteTres;
+   }
 
-    public Personagem getIntegranteEspecifico(Integer integrante) {
-        switch (integrante) {
-            case 1:
-                return integranteUm;
-            case 2:
-                return integranteDois;
-            case 3:
-                return integranteTres;
-            default:
-                return null;
-        }
-    }
+   public String getDescricaoGrupo()
+   {
+      return "------------------------------------------" +
+               integranteUm.getDescricaoPersonagem() +
+               integranteDois.getDescricaoPersonagem() +
+               integranteTres.getDescricaoPersonagem() +
+               "------------------------------------------";
 
-    public void adicionarPersonagem(Personagem p) {
+   }
 
-        if (integranteUm == null) {
-            integranteTres = p;
-        } else {
-            if (integranteDois == null) {
-                integranteDois = p;
-            } else {
-                if (integranteTres == null) {
-                    integranteTres = p;
-                }
+   public Personagem getIntegranteEspecifico(Integer integrante)
+   {
+      switch (integrante)
+      {
+         case 1:
+            return integranteUm;
+         case 2:
+            return integranteDois;
+         case 3:
+            return integranteTres;
+         default:
+            return null;
+      }
+   }
+
+   public void adicionarPersonagem(Personagem p)
+   {
+
+      if (integranteUm == null)
+      {
+         integranteUm = p;
+      }
+      else
+      {
+         if (integranteDois == null)
+         {
+            integranteDois = p;
+         }
+         else
+         {
+            if (integranteTres == null)
+            {
+               integranteTres = p;
             }
-        }
-    }
+         }
+      }
+   }
+
+   public boolean isGrupoVivo()
+   {
+      //Se ao menos um personagem estiver vivo, o grupo ainda esta vivo
+      return integranteUm.isVivo() || integranteDois.isVivo() || integranteTres.isVivo();
+   }
+
+   public String recuperaOpcoesDePesonagem()
+   {
+      String opcoes = "";
+
+      if (isGrupoVivo())
+      {
+         if (integranteUm.isVivo())
+         {
+            opcoes = opcoes + "1- " + integranteUm.getNome() + "\n";
+         }
+
+         if (integranteDois.isVivo())
+         {
+            opcoes = opcoes + "2- " + integranteDois.getNome() + "\n";
+         }
+
+         if (integranteTres.isVivo())
+         {
+            opcoes = opcoes + "3- " + integranteTres.getNome() + "\n";
+         }
+      }
+      else
+      {
+         opcoes = opcoes + "Nenhum personagem vivo";
+      }
+
+      return opcoes;
+   }
+
+   public boolean isPersonagemEspecificoVivo(Integer indice)
+   {
+
+      if (inidicesValidos.contains(indice))
+      {
+
+         if (indice == 1)
+         {
+            return integranteUm.isVivo();
+         }
+         else if (indice == 2)
+         {
+            return integranteDois.isVivo();
+
+         }
+         else if (indice == 3)
+         {
+            return integranteTres.isVivo();
+
+         }
+         else
+         {
+            return false;
+         }
+      }
+      else
+      {
+         return false;
+      }
+   }
+
+   public String recuperaAtaquesPersonagemEspecifico(Integer indice)
+   {
+      if (inidicesValidos.contains(indice))
+      {
+
+         if (indice == 1)
+         {
+            return integranteUm.recuperaListaDeAtaques();
+         }
+         else if (indice == 2)
+         {
+            return integranteDois.recuperaListaDeAtaques();
+
+         }
+         else if (indice == 3)
+         {
+            return integranteTres.recuperaListaDeAtaques();
+
+         }
+         else
+         {
+            return "";
+         }
+      }
+      else
+      {
+         return "";
+      }
+   }
+
+   public void evoluir()
+   {
+      integranteUm.aumentarNivel();
+      integranteDois.aumentarNivel();
+      integranteTres.aumentarNivel();
+   }
+
+   public String recuperaStatusGrupo()
+   {
+      return "--------------------------------\n" +
+               "1- " + integranteUm.getNome() + "\n" +
+               "Vida - " + integranteUm.getVidaAtual() + "\n" +
+               "2- " + integranteDois.getNome() + "\n" +
+               "Vida - " + integranteDois.getVidaAtual() + "\n" +
+               "31- " + integranteTres.getNome() + "\n" +
+               "Vida - " + integranteTres.getVidaAtual() + "\n" +
+               "--------------------------------";
+   }
 }
