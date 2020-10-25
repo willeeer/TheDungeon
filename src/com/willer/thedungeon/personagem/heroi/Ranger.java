@@ -57,7 +57,7 @@ public class Ranger extends Personagem
    @Override
    public String getNomeMagiaPrincipal()
    {
-      return "Magia Principal Ranger";
+      return "Raio Lunar";
    }
 
    @Override
@@ -69,7 +69,7 @@ public class Ranger extends Personagem
    @Override
    public String getNomeMagiaEspecial()
    {
-      return "Magia Especial Paladino";
+      return "Onda Trovejante";
    }
 
    @Override

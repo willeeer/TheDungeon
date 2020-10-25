@@ -42,7 +42,7 @@ public class Arcanista extends Personagem
    @Override
    public String getNomeMagiaPrincipal()
    {
-      return "Magia Principal Arcanista";
+      return "Raio Gélido";
    }
 
    @Override
@@ -54,7 +54,7 @@ public class Arcanista extends Personagem
    @Override
    public String getNomeMagiaEspecial()
    {
-      return "Magia Especial Arcanista";
+      return "Torrente Arcana";
    }
 
    @Override

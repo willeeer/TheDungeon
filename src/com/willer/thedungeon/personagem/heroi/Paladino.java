@@ -57,7 +57,7 @@ public class Paladino extends Personagem
    @Override
    public String getNomeMagiaPrincipal()
    {
-      return "Magia Principal Paladino";
+      return "Chicote de Espinhos";
    }
 
    @Override
@@ -69,7 +69,7 @@ public class Paladino extends Personagem
    @Override
    public String getNomeMagiaEspecial()
    {
-      return "Magia Especial Paladino";
+      return "Chama Sagrada";
    }
 
    @Override
