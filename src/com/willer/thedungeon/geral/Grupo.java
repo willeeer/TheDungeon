@@ -213,7 +213,7 @@ public class Grupo
                "Vida - " + integranteUm.getVidaAtual() + "\n" +
                "2- " + integranteDois.getNome() + "\n" +
                "Vida - " + integranteDois.getVidaAtual() + "\n" +
-               "31- " + integranteTres.getNome() + "\n" +
+               "3- " + integranteTres.getNome() + "\n" +
                "Vida - " + integranteTres.getVidaAtual() + "\n" +
                "----------------------------";
    }
