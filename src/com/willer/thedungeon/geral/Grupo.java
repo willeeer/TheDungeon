@@ -208,13 +208,13 @@ public class Grupo
 
    public String recuperaStatusGrupo()
    {
-      return "--------------------------------\n" +
+      return "----- Status do Grupo ------\n" +
                "1- " + integranteUm.getNome() + "\n" +
                "Vida - " + integranteUm.getVidaAtual() + "\n" +
                "2- " + integranteDois.getNome() + "\n" +
                "Vida - " + integranteDois.getVidaAtual() + "\n" +
                "31- " + integranteTres.getNome() + "\n" +
                "Vida - " + integranteTres.getVidaAtual() + "\n" +
-               "--------------------------------";
+               "----------------------------";
    }
 }

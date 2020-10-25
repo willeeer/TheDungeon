@@ -31,7 +31,6 @@ public class ExecutorTheDungeon
 
       inicializaDadosJogo();
 
-
       //Este pedaço de código é só para adiantar os testes
       grupoPrincipal = new Grupo();
       grupoPrincipal.adicionarPersonagem(new Arcanista("ArcTeste"));
@@ -45,10 +44,10 @@ public class ExecutorTheDungeon
       {
 
          System.out.println("---> Cadastrar Heroi - 1\n"
-         		+ "---> Lista Herois - 2\n"
-         		+ "---> Montar grupo - 3\n"
-         		+ "---> Inicar aventura! - 4\n"
-         		+ "---> Sair - 0");
+                  + "---> Lista Herois - 2\n"
+                  + "---> Montar grupo - 3\n"
+                  + "---> Inicar aventura! - 4\n"
+                  + "---> Sair - 0");
 
          escolhaMenu = lervalorInteiroTeclado();
 
@@ -373,11 +372,11 @@ public class ExecutorTheDungeon
    {
       try
       {
-         System.out.printf("\n.");
+         System.out.print("\n.");
          Thread.sleep(800);
-         System.out.printf(".");
+         System.out.print(".");
          Thread.sleep(800);
-         System.out.printf(".");
+         System.out.print(".");
          Thread.sleep(800);
          System.out.println("\n");
       }

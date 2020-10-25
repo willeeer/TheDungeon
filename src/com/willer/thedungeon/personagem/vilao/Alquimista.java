@@ -43,7 +43,7 @@ public class Alquimista extends Vilao
    @Override
    public String getNomeMagiaPrincipal()
    {
-      return "Magia Principal Alquimista";
+      return "Poção aterrorizante.";
    }
 
    @Override
@@ -55,7 +55,7 @@ public class Alquimista extends Vilao
    @Override
    public String getNomeMagiaEspecial()
    {
-      return "Magia Especial Alquimista";
+      return "Veneno Mortal";
    }
 
    @Override

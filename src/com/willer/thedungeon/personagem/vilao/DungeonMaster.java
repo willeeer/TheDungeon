@@ -39,7 +39,7 @@ public class DungeonMaster extends Vilao
    @Override
    public String getNomeMagiaPrincipal()
    {
-      return "Magia Principal Arcanista";
+      return "Chamas Negras";
    }
 
    @Override
@@ -51,7 +51,7 @@ public class DungeonMaster extends Vilao
    @Override
    public String getNomeMagiaEspecial()
    {
-      return "Magia Especial Arcanista";
+      return "Obliteração";
    }
 
    @Override

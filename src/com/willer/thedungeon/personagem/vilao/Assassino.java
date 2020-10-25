@@ -39,7 +39,7 @@ public class Assassino extends Vilao
    @Override
    public String getNomeMagiaPrincipal()
    {
-      return "Magia Principal Assassino";
+      return "Golpe Rápido";
    }
 
    @Override
@@ -51,7 +51,7 @@ public class Assassino extends Vilao
    @Override
    public String getNomeMagiaEspecial()
    {
-      return "Magia Especial Assassino";
+      return "Adaga venenosa.";
    }
 
    @Override
