@@ -44,10 +44,11 @@ public class ExecutorTheDungeon
       do
       {
 
-         System.out.println("---> Cadastrar Heroi - 1");
-         System.out.println("---> Lista Herois - 2");
-         System.out.println("---> Montar grupo - 3");
-         System.out.println("---> Inicar aventura! - 4");
+         System.out.println("---> Cadastrar Heroi - 1\n"
+         		+ "---> Lista Herois - 2\n"
+         		+ "---> Montar grupo - 3\n"
+         		+ "---> Inicar aventura! - 4\n"
+         		+ "---> Sair - 0");
 
          escolhaMenu = lervalorInteiroTeclado();
 
@@ -67,8 +68,10 @@ public class ExecutorTheDungeon
                break;
             case 0:
                System.out.println("Saindo...");
+               break;
             default:
                System.out.println("valor invalido");
+               break;
          }
 
       }
