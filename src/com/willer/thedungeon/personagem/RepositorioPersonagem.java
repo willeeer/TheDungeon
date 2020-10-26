@@ -70,26 +70,6 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
 
    }
 
-   @Override
-   public void listar()
-   {
-
-      if (!listaPersonagens.isEmpty())
-      {
-         for (Personagem p : this.listaPersonagens)
-         {
-
-            System.out.println(p.getDescricaoPersonagem());
-
-         }
-      }
-      else
-      {
-         System.out.println("Nenhum Personagem cadastrado.");
-      }
-
-   }
-
    public List<Personagem> getListaPersonagens()
    {
       return listaPersonagens;

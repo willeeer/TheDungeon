@@ -33,7 +33,11 @@ public class Assassino extends Vilao
    @Override
    public String getDescricaoPersonagem()
    {
-      return "Assassino: " + getNome() + "\nNivel: " + getNivel();
+      return "-------------------------\n"
+               + "Assassino: " + getNome() + "\n"
+               + "Nivel: " + getNivel() + "\n"
+               + "ID: " + getId() + "\n"
+               + "-------------------------\n";
    }
 
    @Override

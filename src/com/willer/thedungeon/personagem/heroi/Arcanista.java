@@ -36,7 +36,11 @@ public class Arcanista extends Personagem
    @Override
    public String getDescricaoPersonagem()
    {
-      return "Arcanista: " + getNome() + "\nNivel: " + getNivel();
+      return "-------------------------\n"
+               + "Arcanista: " + getNome() + "\n"
+               + "Nivel: " + getNivel() + "\n"
+               + "ID: " + getId() + "\n"
+               + "-------------------------\n";
    }
 
    @Override

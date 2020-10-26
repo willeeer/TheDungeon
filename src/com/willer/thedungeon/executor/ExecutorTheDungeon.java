@@ -11,6 +11,7 @@ import com.willer.thedungeon.personagem.vilao.Assassino;
 import com.willer.thedungeon.personagem.vilao.DungeonMaster;
 import com.willer.thedungeon.personagem.vilao.Vilao;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ExecutorTheDungeon
@@ -193,7 +194,23 @@ public class ExecutorTheDungeon
 
    private static void listarPersonagens()
    {
-      repoPersonagem.listar();
+
+      List<Personagem> listaPersonagens = repoPersonagem.getListaPersonagens();
+
+      if (!listaPersonagens.isEmpty())
+      {
+         for (Personagem p : listaPersonagens)
+         {
+
+            System.out.println(p.getDescricaoPersonagem());
+
+         }
+      }
+      else
+      {
+         System.out.println("Nenhum Personagem cadastrado.");
+      }
+
    }
 
    private static void cadastrarPersonagem()

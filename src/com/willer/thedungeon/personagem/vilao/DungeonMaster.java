@@ -33,7 +33,11 @@ public class DungeonMaster extends Vilao
    @Override
    public String getDescricaoPersonagem()
    {
-      return "DungeonMaster: " + getNome() + "\nNivel: " + getNivel();
+      return "-------------------------\n"
+               + "DungeonMaster: " + getNome() + "\n"
+               + "Nivel: " + getNivel() + "\n"
+               + "ID: " + getId() + "\n"
+               + "-------------------------\n";
    }
 
    @Override

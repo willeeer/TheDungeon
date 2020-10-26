@@ -9,6 +9,4 @@ public interface IRepositorioPersonagem
 
    public void excluir(Integer id);
 
-   public void listar();
-
 }
