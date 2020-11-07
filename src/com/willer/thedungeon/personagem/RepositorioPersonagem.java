@@ -3,6 +3,8 @@ package com.willer.thedungeon.personagem;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.willer.thedungeon.exceptions.RepositorioException;
+
 public class RepositorioPersonagem implements IRepositorioPersonagem
 {
 
@@ -14,7 +16,7 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
    }
 
    @Override
-   public boolean inserir(Personagem p)
+   public void inserir(Personagem p) throws RepositorioException
    {
       boolean jaExiste = false;
       if (p != null)
@@ -32,12 +34,11 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
 
       if (jaExiste)
       {
-         return false;
+    	 throw new RepositorioException("Este personagem já está inserido");
       }
       else
       {
          this.listaPersonagens.add(p);
-         return true;
       }
 
    }

@@ -1,5 +1,7 @@
 package com.willer.thedungeon.executor;
 
+import com.willer.thedungeon.exceptions.MenuException;
+import com.willer.thedungeon.exceptions.RepositorioException;
 import com.willer.thedungeon.geral.Grupo;
 import com.willer.thedungeon.personagem.Personagem;
 import com.willer.thedungeon.personagem.RepositorioPersonagem;
@@ -55,23 +57,38 @@ public class ExecutorTheDungeon
          switch (escolhaMenu)
          {
             case 1:
-               cadastrarPersonagem();
-               break;
+            	try{
+            	cadastrarPersonagem();
+            	}
+            	catch(MenuException e){
+            		System.out.println(e.getMessage());
+            	}
+                break;
             case 2:
-               listarPersonagens();
-               break;
+            	try{
+                listarPersonagens();
+            	}
+            	catch(RepositorioException e){
+            		System.out.println(e.getMessage());
+            	}
+                break;
             case 3:
-               montarGrupo();
-               break;
+            	try{
+                montarGrupo();
+            	}
+            	catch(MenuException e){
+            		System.out.println(e.getMessage());
+            	}
+                break;
             case 4:
-               inicarJogo();
-               break;
+                inicarJogo();
+                break;
             case 0:
-               System.out.println("Saindo...");
-               break;
+                System.out.println("Saindo...");
+                break;
             default:
-               System.out.println("valor invalido");
-               break;
+                System.out.println("valor invalido");
+                break;
          }
 
       }
@@ -110,18 +127,22 @@ public class ExecutorTheDungeon
 
    private static void inicializaDadosJogo()
    {
-      repoPersonagem.inserir(new Arcanista("Bruxo"));
-      repoPersonagem.inserir(new Arcanista("Gandalf"));
-      repoPersonagem.inserir(new Arcanista("Mr m"));
-
-      repoPersonagem.inserir(new Ranger("Arqueiro vesgo"));
-      repoPersonagem.inserir(new Ranger("Legolas"));
-      repoPersonagem.inserir(new Ranger("Qq coisa"));
-
-      repoPersonagem.inserir(new Paladino("Paladino desnutrido"));
-      repoPersonagem.inserir(new Paladino("ZZZZZZZZZZ"));
-      repoPersonagem.inserir(new Paladino("QQ coisa 2"));
-
+	  try{
+	      repoPersonagem.inserir(new Arcanista("Bruxo"));
+	      repoPersonagem.inserir(new Arcanista("Gandalf"));
+	      repoPersonagem.inserir(new Arcanista("Mr m"));
+	
+	      repoPersonagem.inserir(new Ranger("Arqueiro vesgo"));
+	      repoPersonagem.inserir(new Ranger("Legolas"));
+	      repoPersonagem.inserir(new Ranger("Qq coisa"));
+	
+	      repoPersonagem.inserir(new Paladino("Paladino desnutrido"));
+	      repoPersonagem.inserir(new Paladino("ZZZZZZZZZZ"));
+	      repoPersonagem.inserir(new Paladino("QQ coisa 2"));
+	  }
+	  catch(RepositorioException e){
+		  System.out.println(e.getMessage());
+	  }
       //fase 1
       assassino = new Assassino("Kalec");
       assassino.aumentarNivel();
@@ -141,7 +162,7 @@ public class ExecutorTheDungeon
       }
    }
 
-   private static void montarGrupo()
+   private static void montarGrupo() throws MenuException
    {
       grupoPrincipal = new Grupo();
 
@@ -164,7 +185,12 @@ public class ExecutorTheDungeon
          switch (escolha)
          {
             case 1:
+               try{
                listarPersonagens();
+               }
+               catch(RepositorioException e){
+            	   System.out.println(e.getMessage());
+               }
                break;
             case 2:
                System.out.println("Digite o Id do personagem que deseja incluir no grupo.");
@@ -182,8 +208,7 @@ public class ExecutorTheDungeon
                System.out.println("saindo");
                break;
             default:
-               System.out.println("Valor invalido");
-               break;
+               throw new MenuException("Valor inválido");
          }
 
       }
@@ -192,7 +217,7 @@ public class ExecutorTheDungeon
       System.out.println("Montagem de grupo concluida com sucesso!");
    }
 
-   private static void listarPersonagens()
+   private static void listarPersonagens() throws RepositorioException
    {
 
       List<Personagem> listaPersonagens = repoPersonagem.getListaPersonagens();
@@ -208,12 +233,12 @@ public class ExecutorTheDungeon
       }
       else
       {
-         System.out.println("Nenhum Personagem cadastrado.");
+    	 throw new RepositorioException("Nenhum Personagem cadastrado.");
       }
 
    }
 
-   private static void cadastrarPersonagem()
+   private static void cadastrarPersonagem() throws MenuException
    {
 
       Personagem cadastro = null;
@@ -243,12 +268,17 @@ public class ExecutorTheDungeon
       }
       else
       {
-         System.out.println("Valor invalido.");
+         throw new MenuException("Valor Inválido");
       }
 
       if (cadastro != null)
       {
-         repoPersonagem.inserir(cadastro);
+    	 try{
+    		 repoPersonagem.inserir(cadastro);
+    	 }
+    	 catch(RepositorioException e){
+    		 System.out.println(e.getMessage());
+    	 }
       }
    }
 
@@ -333,7 +363,7 @@ public class ExecutorTheDungeon
             {
                do
                {
-                  System.out.println("Escolha o ataque um ataque!");
+                  System.out.println("Escolha um ataque!");
                   System.out.println(grupo.recuperaAtaquesPersonagemEspecifico(escolhaPesonagem));
                   escolhaAtaque = lervalorInteiroTeclado();
                }
