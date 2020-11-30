@@ -30,7 +30,6 @@ public class Arcanista extends Personagem
       setInteligencia(getInteligencia() + 5);
       setVidaMaxima(getVidaMaxima() + getAtributoPrincipal() * 2);
       setVidaAtual(getVidaMaxima());
-      ;
    }
 
    @Override

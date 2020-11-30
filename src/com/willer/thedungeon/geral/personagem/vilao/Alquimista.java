@@ -1,4 +1,4 @@
-package com.willer.thedungeon.personagem.vilao;
+package com.willer.thedungeon.geral.personagem.vilao;
 
 public class Alquimista extends Vilao
 {

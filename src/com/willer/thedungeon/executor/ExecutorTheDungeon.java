@@ -1,17 +1,17 @@
 package com.willer.thedungeon.executor;
 
+import com.willer.thedungeon.dados.RepositorioPersonagem;
 import com.willer.thedungeon.exceptions.MenuException;
 import com.willer.thedungeon.exceptions.RepositorioException;
 import com.willer.thedungeon.geral.Grupo;
-import com.willer.thedungeon.personagem.Personagem;
-import com.willer.thedungeon.personagem.RepositorioPersonagem;
-import com.willer.thedungeon.personagem.heroi.Arcanista;
-import com.willer.thedungeon.personagem.heroi.Paladino;
-import com.willer.thedungeon.personagem.heroi.Ranger;
-import com.willer.thedungeon.personagem.vilao.Alquimista;
-import com.willer.thedungeon.personagem.vilao.Assassino;
-import com.willer.thedungeon.personagem.vilao.DungeonMaster;
-import com.willer.thedungeon.personagem.vilao.Vilao;
+import com.willer.thedungeon.geral.personagem.Personagem;
+import com.willer.thedungeon.geral.personagem.heroi.Arcanista;
+import com.willer.thedungeon.geral.personagem.heroi.Paladino;
+import com.willer.thedungeon.geral.personagem.heroi.Ranger;
+import com.willer.thedungeon.geral.personagem.vilao.Alquimista;
+import com.willer.thedungeon.geral.personagem.vilao.Assassino;
+import com.willer.thedungeon.geral.personagem.vilao.DungeonMaster;
+import com.willer.thedungeon.geral.personagem.vilao.Vilao;
 
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +20,7 @@ public class ExecutorTheDungeon
 {
 
    private static final Scanner scan = new Scanner(System.in);
-   private static final RepositorioPersonagem repoPersonagem = new RepositorioPersonagem();
+   private static final RepositorioPersonagem repoPersonagem = RepositorioPersonagem.getInstance();
 
    private static Grupo grupoPrincipal;
    private static DungeonMaster dungeonMaster;
@@ -54,41 +54,43 @@ public class ExecutorTheDungeon
 
          escolhaMenu = lervalorInteiroTeclado();
 
-         switch (escolhaMenu)
+         try
          {
-            case 1:
-            	try{
-            	cadastrarPersonagem();
-            	}
-            	catch(MenuException e){
-            		System.out.println(e.getMessage());
-            	}
-                break;
-            case 2:
-            	try{
-                listarPersonagens();
-            	}
-            	catch(RepositorioException e){
-            		System.out.println(e.getMessage());
-            	}
-                break;
-            case 3:
-            	try{
-                montarGrupo();
-            	}
-            	catch(MenuException e){
-            		System.out.println(e.getMessage());
-            	}
-                break;
-            case 4:
-                inicarJogo();
-                break;
-            case 0:
-                System.out.println("Saindo...");
-                break;
-            default:
-                System.out.println("valor invalido");
-                break;
+            switch (escolhaMenu)
+            {
+               case 1:
+
+                  cadastrarPersonagem();
+
+                  break;
+               case 2:
+
+                  listarPersonagens();
+
+                  break;
+               case 3:
+
+                  montarGrupo();
+                  break;
+               case 4:
+                  inicarJogo();
+                  break;
+               case 0:
+                  System.out.println("Saindo...");
+                  break;
+               default:
+                  System.out.println("valor invalido");
+                  break;
+            }
+         }
+         catch (MenuException e)
+         {
+            System.out.println(e.getMessage());
+
+         }
+         catch (RepositorioException e)
+         {
+            System.out.println(e.getMessage());
          }
 
       }
@@ -127,22 +129,24 @@ public class ExecutorTheDungeon
 
    private static void inicializaDadosJogo()
    {
-	  try{
-	      repoPersonagem.inserir(new Arcanista("Bruxo"));
-	      repoPersonagem.inserir(new Arcanista("Gandalf"));
-	      repoPersonagem.inserir(new Arcanista("Mr m"));
-	
-	      repoPersonagem.inserir(new Ranger("Arqueiro vesgo"));
-	      repoPersonagem.inserir(new Ranger("Legolas"));
-	      repoPersonagem.inserir(new Ranger("Qq coisa"));
-	
-	      repoPersonagem.inserir(new Paladino("Paladino desnutrido"));
-	      repoPersonagem.inserir(new Paladino("ZZZZZZZZZZ"));
-	      repoPersonagem.inserir(new Paladino("QQ coisa 2"));
-	  }
-	  catch(RepositorioException e){
-		  System.out.println(e.getMessage());
-	  }
+      try
+      {
+         repoPersonagem.inserir(new Arcanista("Bruxo"));
+         repoPersonagem.inserir(new Arcanista("Gandalf"));
+         repoPersonagem.inserir(new Arcanista("Mr m"));
+
+         repoPersonagem.inserir(new Ranger("Arqueiro vesgo"));
+         repoPersonagem.inserir(new Ranger("Legolas"));
+         repoPersonagem.inserir(new Ranger("Qq coisa"));
+
+         repoPersonagem.inserir(new Paladino("Paladino desnutrido"));
+         repoPersonagem.inserir(new Paladino("ZZZZZZZZZZ"));
+         repoPersonagem.inserir(new Paladino("QQ coisa 2"));
+      }
+      catch (RepositorioException e)
+      {
+         System.out.println(e.getMessage());
+      }
       //fase 1
       assassino = new Assassino("Kalec");
       assassino.aumentarNivel();
@@ -185,11 +189,13 @@ public class ExecutorTheDungeon
          switch (escolha)
          {
             case 1:
-               try{
-               listarPersonagens();
+               try
+               {
+                  listarPersonagens();
                }
-               catch(RepositorioException e){
-            	   System.out.println(e.getMessage());
+               catch (RepositorioException e)
+               {
+                  System.out.println(e.getMessage());
                }
                break;
             case 2:
@@ -208,7 +214,7 @@ public class ExecutorTheDungeon
                System.out.println("saindo");
                break;
             default:
-               throw new MenuException("Valor inválido");
+               throw new MenuException("Valor invï¿½lido");
          }
 
       }
@@ -233,7 +239,7 @@ public class ExecutorTheDungeon
       }
       else
       {
-    	 throw new RepositorioException("Nenhum Personagem cadastrado.");
+         throw new RepositorioException("Nenhum Personagem cadastrado.");
       }
 
    }
@@ -268,17 +274,19 @@ public class ExecutorTheDungeon
       }
       else
       {
-         throw new MenuException("Valor Inválido");
+         throw new MenuException("Valor InvÃ¡lido");
       }
 
       if (cadastro != null)
       {
-    	 try{
-    		 repoPersonagem.inserir(cadastro);
-    	 }
-    	 catch(RepositorioException e){
-    		 System.out.println(e.getMessage());
-    	 }
+         try
+         {
+            repoPersonagem.inserir(cadastro);
+         }
+         catch (RepositorioException e)
+         {
+            System.out.println(e.getMessage());
+         }
       }
    }
 

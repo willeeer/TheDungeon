@@ -1,6 +1,6 @@
-package com.willer.thedungeon.personagem;
+package com.willer.thedungeon.geral.personagem;
 
-import com.willer.thedungeon.magias.IMagias;
+import com.willer.thedungeon.geral.IMagias;
 
 public abstract class Personagem implements IMagias
 {

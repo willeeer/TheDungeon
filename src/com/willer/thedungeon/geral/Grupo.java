@@ -1,6 +1,6 @@
 package com.willer.thedungeon.geral;
 
-import com.willer.thedungeon.personagem.Personagem;
+import com.willer.thedungeon.geral.personagem.Personagem;
 
 import java.util.Arrays;
 import java.util.List;

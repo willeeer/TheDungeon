@@ -1,6 +1,7 @@
-package com.willer.thedungeon.personagem;
+package com.willer.thedungeon.dados;
 
 import com.willer.thedungeon.exceptions.RepositorioException;
+import com.willer.thedungeon.geral.personagem.Personagem;
 
 public interface IRepositorioPersonagem
 {

@@ -1,18 +1,30 @@
-package com.willer.thedungeon.personagem;
+package com.willer.thedungeon.dados;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.willer.thedungeon.exceptions.RepositorioException;
+import com.willer.thedungeon.geral.personagem.Personagem;
 
 public class RepositorioPersonagem implements IRepositorioPersonagem
 {
+
+   private static RepositorioPersonagem instance;
 
    private List<Personagem> listaPersonagens;
 
    public RepositorioPersonagem()
    {
       this.listaPersonagens = new ArrayList<>();
+   }
+
+   public static synchronized RepositorioPersonagem getInstance()
+   {
+      if (instance == null)
+      {
+         instance = new RepositorioPersonagem();
+      }
+      return instance;
    }
 
    @Override
@@ -34,7 +46,7 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
 
       if (jaExiste)
       {
-    	 throw new RepositorioException("Este personagem já está inserido");
+    	 throw new RepositorioException("Este personagem jï¿½ estï¿½ inserido");
       }
       else
       {

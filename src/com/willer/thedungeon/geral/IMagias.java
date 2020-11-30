@@ -1,4 +1,4 @@
-package com.willer.thedungeon.magias;
+package com.willer.thedungeon.geral;
 
 public interface IMagias
 {

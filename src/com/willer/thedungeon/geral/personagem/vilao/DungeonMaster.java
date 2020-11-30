@@ -1,14 +1,14 @@
-package com.willer.thedungeon.personagem.vilao;
+package com.willer.thedungeon.geral.personagem.vilao;
 
-public class Assassino extends Vilao
+public class DungeonMaster extends Vilao
 {
 
-   public Assassino(String nome)
+   public DungeonMaster(String nome)
    {
       super(nome);
-      setForca(7);
-      setAgilidade(15);
-      setInteligencia(10);
+      setForca(15);
+      setAgilidade(7);
+      setInteligencia(7);
       setVidaAtual(100);
       setVidaMaxima(100);
    }
@@ -16,15 +16,15 @@ public class Assassino extends Vilao
    @Override
    public Integer getAtributoPrincipal()
    {
-      return getAgilidade();
+      return getForca();
    }
 
    @Override
    public void aumentarNivel()
    {
       setNivel(getNivel() + 1);
-      setForca(getForca() + 3);
-      setAgilidade(getAgilidade() + 5);
+      setForca(getForca() + 5);
+      setAgilidade(getAgilidade() + 2);
       setInteligencia(getInteligencia() + 2);
       setVidaMaxima(getVidaMaxima() + getAtributoPrincipal()*2);
       setVidaAtual(getVidaMaxima());
@@ -34,7 +34,7 @@ public class Assassino extends Vilao
    public String getDescricaoPersonagem()
    {
       return "-------------------------\n"
-               + "Assassino: " + getNome() + "\n"
+               + "DungeonMaster: " + getNome() + "\n"
                + "Nivel: " + getNivel() + "\n"
                + "ID: " + getId() + "\n"
                + "-------------------------\n";
@@ -43,7 +43,7 @@ public class Assassino extends Vilao
    @Override
    public String getNomeMagiaPrincipal()
    {
-      return "Golpe Rápido";
+      return "Chamas Negras";
    }
 
    @Override
@@ -55,12 +55,12 @@ public class Assassino extends Vilao
    @Override
    public String getNomeMagiaEspecial()
    {
-      return "Adaga venenosa.";
+      return "Obliteração";
    }
 
    @Override
    public Integer getForcaMagiaEspecial()
    {
-      return calculaAtaque() + getAtributoPrincipal()*2;
+      return calculaAtaque() + getAtributoPrincipal() * 3;
    }
 }
