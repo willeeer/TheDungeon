@@ -1,6 +1,6 @@
-package com.willer.thedungeon.personagem.heroi;
+package com.willer.thedungeon.geral.personagem.heroi;
 
-import com.willer.thedungeon.personagem.Personagem;
+import com.willer.thedungeon.geral.personagem.Personagem;
 
 public class Paladino extends Personagem
 {
