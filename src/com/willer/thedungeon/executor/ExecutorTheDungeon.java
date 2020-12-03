@@ -133,15 +133,15 @@ public class ExecutorTheDungeon
       {
          repoPersonagem.inserir(new Arcanista("Bruxo"));
          repoPersonagem.inserir(new Arcanista("Gandalf"));
-         repoPersonagem.inserir(new Arcanista("Mr m"));
+         repoPersonagem.inserir(new Arcanista("Mr.M"));
 
          repoPersonagem.inserir(new Ranger("Arqueiro vesgo"));
          repoPersonagem.inserir(new Ranger("Legolas"));
-         repoPersonagem.inserir(new Ranger("Qq coisa"));
+         repoPersonagem.inserir(new Ranger("Mago Clérigo"));
 
          repoPersonagem.inserir(new Paladino("Paladino desnutrido"));
-         repoPersonagem.inserir(new Paladino("ZZZZZZZZZZ"));
-         repoPersonagem.inserir(new Paladino("QQ coisa 2"));
+         repoPersonagem.inserir(new Paladino("Paladino de baixo orçamento"));
+         repoPersonagem.inserir(new Paladino("Mago Gladiador"));
       }
       catch (RepositorioException e)
       {
