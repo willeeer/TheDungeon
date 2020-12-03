@@ -1,6 +1,6 @@
 
 .metadata/
 
-.idea/vcs.xml
+.idea/*
 
 *.class
