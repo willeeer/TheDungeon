@@ -13,7 +13,7 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
 
    private List<Personagem> listaPersonagens;
 
-   public RepositorioPersonagem()
+   private RepositorioPersonagem()
    {
       this.listaPersonagens = new ArrayList<>();
    }
