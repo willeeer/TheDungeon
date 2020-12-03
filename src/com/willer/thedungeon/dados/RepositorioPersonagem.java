@@ -36,12 +36,15 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
 
          for (Personagem busca : this.listaPersonagens)
          {
-            if (p.getId().equals(busca.getId()))
+            if (p.getId()==(busca.getId()))
             {
                jaExiste = true;
                break;
             }
          }
+      } else if (p == null)
+      {
+          
       }
 
       if (jaExiste)
@@ -56,11 +59,11 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
    }
 
    @Override
-   public Personagem buscarPorId(Integer id)
+   public Personagem buscarPorId(int id)
    {
       for (Personagem p : this.listaPersonagens)
       {
-         if (p.getId().equals(id))
+         if (p.getId() == (id))
          {
             return p;
          }
@@ -70,11 +73,11 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
    }
 
    @Override
-   public void excluir(Integer id)
+   public void excluir(int id)
    {
       for (Personagem p : this.listaPersonagens)
       {
-         if (p.getId().equals(id))
+         if (p.getId()==(id))
          {
             listaPersonagens.remove(p);
             break;
