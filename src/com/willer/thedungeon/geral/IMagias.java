@@ -5,9 +5,9 @@ public interface IMagias
 
    String getNomeMagiaPrincipal();
 
-   Integer getForcaMagiaPrincipal();
+  int getForcaMagiaPrincipal();
 
    String getNomeMagiaEspecial();
 
-   Integer getForcaMagiaEspecial();
+   int getForcaMagiaEspecial();
 }

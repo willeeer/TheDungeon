@@ -14,12 +14,12 @@ public abstract class Vilao extends Personagem
       super(nome);
    }
 
-   public Integer escolheAtaqueAleatorio()
+   public int escolheAtaqueAleatorio()
    {
       return random.nextInt(3) + 1;
    }
 
-   public Integer escolhePersonagemAleatorioParaAtacar()
+   public int escolhePersonagemAleatorioParaAtacar()
    {
       return random.nextInt(3) + 1;
 

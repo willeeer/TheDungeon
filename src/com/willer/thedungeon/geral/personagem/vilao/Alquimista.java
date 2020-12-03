@@ -35,7 +35,7 @@ public class Alquimista extends Vilao
    }
 
    @Override
-   public Integer getAtributoPrincipal()
+   public int getAtributoPrincipal()
    {
       return getInteligencia();
    }
@@ -47,7 +47,7 @@ public class Alquimista extends Vilao
    }
 
    @Override
-   public Integer getForcaMagiaPrincipal()
+   public int getForcaMagiaPrincipal()
    {
       return calculaAtaque() + getInteligencia();
    }
@@ -59,7 +59,7 @@ public class Alquimista extends Vilao
    }
 
    @Override
-   public Integer getForcaMagiaEspecial()
+   public int getForcaMagiaEspecial()
    {
       return calculaAtaque() + getInteligencia() * 2;
    }

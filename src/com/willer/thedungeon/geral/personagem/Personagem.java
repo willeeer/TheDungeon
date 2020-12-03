@@ -5,16 +5,16 @@ import com.willer.thedungeon.geral.IMagias;
 public abstract class Personagem implements IMagias
 {
 
-   private Integer id;
+   private int id;
    private String nome;
-   private Integer nivel;
-   private Integer forca;
-   private Integer agilidade;
-   private Integer inteligencia;
-   private Integer vidaMaxima;
-   private Integer vidaAtual;
+   private int nivel;
+   private int forca;
+   private int agilidade;
+   private int inteligencia;
+   private int vidaMaxima;
+   private int vidaAtual;
 
-   private static Integer ID_PERSONAGEM = 1;
+   private static int ID_PERSONAGEM = 1;
 
    public Personagem(String nome)
    {
@@ -25,28 +25,28 @@ public abstract class Personagem implements IMagias
       ID_PERSONAGEM++;
    }
 
-   public abstract Integer getAtributoPrincipal();
+   public abstract int getAtributoPrincipal();
 
    public abstract void aumentarNivel();
 
    public abstract String getDescricaoPersonagem();
 
-   public Integer calculaAtaque()
+   public int calculaAtaque()
    {
       return getAtributoPrincipal() * 2 + getNivel();
    }
 
-   public Integer calculaDefesa()
+   public int calculaDefesa()
    {
       return getForca() * 2 + getNivel();
    }
 
-   public Integer getId()
+   public int getId()
    {
       return id;
    }
 
-   public void setId(Integer id)
+   public void setId(int id)
    {
       this.id = id;
    }
@@ -59,64 +59,65 @@ public abstract class Personagem implements IMagias
    public void setNome(String nome)
    {
       this.nome = nome;
+      
    }
 
-   public Integer getNivel()
+   public int getNivel()
    {
       return nivel;
    }
 
-   public void setNivel(Integer nivel)
+   public void setNivel(int nivel)
    {
       this.nivel = nivel;
    }
 
-   public Integer getForca()
+   public int getForca()
    {
       return forca;
    }
 
-   public void setForca(Integer forca)
+   public void setForca(int forca)
    {
       this.forca = forca;
    }
 
-   public Integer getAgilidade()
+   public int getAgilidade()
    {
       return agilidade;
    }
 
-   public void setAgilidade(Integer agilidade)
+   public void setAgilidade(int agilidade)
    {
       this.agilidade = agilidade;
    }
 
-   public Integer getInteligencia()
+   public int getInteligencia()
    {
       return inteligencia;
    }
 
-   public void setInteligencia(Integer inteligencia)
+   public void setInteligencia(int inteligencia)
    {
       this.inteligencia = inteligencia;
    }
 
-   public Integer getVidaMaxima()
+   public int getVidaMaxima()
    {
       return vidaMaxima;
    }
 
-   public void setVidaMaxima(Integer vidaMaxima)
+   public void setVidaMaxima(int vidaMaxima)
    {
       this.vidaMaxima = vidaMaxima;
    }
 
-   public Integer getVidaAtual()
+   public int getVidaAtual()
    {
       return vidaAtual;
    }
 
-   public void setVidaAtual(Integer vidaAtual)
+   public void setVidaAtual(int vidaAtual)
    {
       this.vidaAtual = vidaAtual;
    }
@@ -136,12 +137,12 @@ public abstract class Personagem implements IMagias
                "-------------------------\n";
    }
 
-   public static boolean isIndiceValidoDeAtaque(Integer indice)
+   public static boolean isIndiceValidoDeAtaque(int indice)
    {
       return indice == 1 || indice == 2 || indice == 3;
    }
 
-   public Integer getAtaqueMagiaEscolhida(Integer indice)
+   public int getAtaqueMagiaEscolhida(int indice)
    {
       if (indice == 1)
       {
@@ -161,7 +162,7 @@ public abstract class Personagem implements IMagias
       }
    }
 
-   public String getNomeMagiaEscolhida(Integer indice)
+   public String getNomeMagiaEscolhida(int indice)
    {
       if (indice == 1)
       {

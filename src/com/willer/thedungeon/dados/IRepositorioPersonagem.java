@@ -8,8 +8,8 @@ public interface IRepositorioPersonagem
 
    public void inserir(Personagem p) throws RepositorioException;
 
-   public Personagem buscarPorId(Integer id);
+   public Personagem buscarPorId(int id);
 
-   public void excluir(Integer id);
+   public void excluir(int id);
 
 }

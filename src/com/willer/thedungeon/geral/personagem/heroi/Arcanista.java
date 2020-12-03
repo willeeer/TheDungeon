@@ -16,7 +16,7 @@ public class Arcanista extends Personagem
    }
 
    @Override
-   public Integer getAtributoPrincipal()
+   public int getAtributoPrincipal()
    {
       return getInteligencia();
    }
@@ -49,7 +49,7 @@ public class Arcanista extends Personagem
    }
 
    @Override
-   public Integer getForcaMagiaPrincipal()
+   public int getForcaMagiaPrincipal()
    {
       return calculaAtaque() + getAtributoPrincipal();
    }
@@ -61,7 +61,7 @@ public class Arcanista extends Personagem
    }
 
    @Override
-   public Integer getForcaMagiaEspecial()
+   public int getForcaMagiaEspecial()
    {
       return calculaAtaque() + getAtributoPrincipal() * 2;
    }

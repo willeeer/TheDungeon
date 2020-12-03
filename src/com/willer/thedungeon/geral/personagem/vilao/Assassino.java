@@ -14,7 +14,7 @@ public class Assassino extends Vilao
    }
 
    @Override
-   public Integer getAtributoPrincipal()
+   public int getAtributoPrincipal()
    {
       return getAgilidade();
    }
@@ -47,7 +47,7 @@ public class Assassino extends Vilao
    }
 
    @Override
-   public Integer getForcaMagiaPrincipal()
+   public int getForcaMagiaPrincipal()
    {
       return calculaAtaque() + getAtributoPrincipal();
    }
@@ -59,7 +59,7 @@ public class Assassino extends Vilao
    }
 
    @Override
-   public Integer getForcaMagiaEspecial()
+   public int getForcaMagiaEspecial()
    {
       return calculaAtaque() + getAtributoPrincipal()*2;
    }

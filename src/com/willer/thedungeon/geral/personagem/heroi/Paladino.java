@@ -16,23 +16,12 @@ public class Paladino extends Personagem
    }
 
    @Override
-   public Integer getAtributoPrincipal()
+   public int getAtributoPrincipal()
    {
       return getForca();
    }
 
-   @Override
-   public Integer calculaAtaque()
-   {
-      return getAtributoPrincipal() * 2 + getNivel();
-   }
-
-   @Override
-   public Integer calculaDefesa()
-   {
-      return getForca() * 2 + getNivel();
-   }
-
+  
    @Override
    public void aumentarNivel()
    {
@@ -61,7 +50,7 @@ public class Paladino extends Personagem
    }
 
    @Override
-   public Integer getForcaMagiaPrincipal()
+   public int getForcaMagiaPrincipal()
    {
       return calculaAtaque() + getAtributoPrincipal();
    }
@@ -73,7 +62,7 @@ public class Paladino extends Personagem
    }
 
    @Override
-   public Integer getForcaMagiaEspecial()
+   public int getForcaMagiaEspecial()
    {
       return calculaAtaque() + (getAtributoPrincipal() * 2) - 10 * getNivel();
    }

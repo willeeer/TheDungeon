@@ -65,7 +65,7 @@ public class Grupo
 
    }
 
-   public Personagem getIntegranteEspecifico(Integer integrante)
+   public Personagem getIntegranteEspecifico(int integrante)
    {
       switch (integrante)
       {
@@ -138,7 +138,7 @@ public class Grupo
       return opcoes;
    }
 
-   public boolean isPersonagemEspecificoVivo(Integer indice)
+   public boolean isPersonagemEspecificoVivo(int indice)
    {
 
       if (inidicesValidos.contains(indice))
@@ -169,7 +169,7 @@ public class Grupo
       }
    }
 
-   public String recuperaAtaquesPersonagemEspecifico(Integer indice)
+   public String recuperaAtaquesPersonagemEspecifico(int indice)
    {
       if (inidicesValidos.contains(indice))
       {
