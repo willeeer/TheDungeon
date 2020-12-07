@@ -1,5 +1,6 @@
 package com.willer.thedungeon.executor;
 
+import com.willer.thedungeon.controller.PersonagemController;
 import com.willer.thedungeon.dados.RepositorioPersonagem;
 import com.willer.thedungeon.exceptions.MenuException;
 import com.willer.thedungeon.exceptions.RepositorioException;
@@ -21,6 +22,7 @@ public class ExecutorTheDungeon
 
    private static final Scanner scan = new Scanner(System.in);
    private static final RepositorioPersonagem repoPersonagem = RepositorioPersonagem.getInstance();
+   private static final PersonagemController personagemController = PersonagemController.getInstance();
 
    private static Grupo grupoPrincipal;
    private static DungeonMaster dungeonMaster;
@@ -49,7 +51,8 @@ public class ExecutorTheDungeon
          System.out.println("---> Cadastrar Heroi - 1\n"
                   + "---> Lista Herois - 2\n"
                   + "---> Montar grupo - 3\n"
-                  + "---> Inicar aventura! - 4\n"
+                  + "---> Excluir Heroi - 4\n"
+                  + "---> Inicar aventura! - 5\n"
                   + "---> Sair - 0");
 
          escolhaMenu = lervalorInteiroTeclado();
@@ -73,6 +76,9 @@ public class ExecutorTheDungeon
                   montarGrupo();
                   break;
                case 4:
+                  excluirPersonagem();
+                  break;
+               case 5:
                   inicarJogo();
                   break;
                case 0:
@@ -131,17 +137,17 @@ public class ExecutorTheDungeon
    {
       try
       {
-         repoPersonagem.inserir(new Arcanista("Bruxo"));
-         repoPersonagem.inserir(new Arcanista("Gandalf"));
-         repoPersonagem.inserir(new Arcanista("Mr.M"));
+         personagemController.inserir(new Arcanista("Bruxo"));
+         personagemController.inserir(new Arcanista("Gandalf"));
+         personagemController.inserir(new Arcanista("Mr.M"));
 
-         repoPersonagem.inserir(new Ranger("Arqueiro vesgo"));
-         repoPersonagem.inserir(new Ranger("Legolas"));
-         repoPersonagem.inserir(new Ranger("Mago Clérigo"));
+         personagemController.inserir(new Ranger("Arqueiro vesgo"));
+         personagemController.inserir(new Ranger("Legolas"));
+         personagemController.inserir(new Ranger("Mago Clérigo"));
 
-         repoPersonagem.inserir(new Paladino("Paladino desnutrido"));
-         repoPersonagem.inserir(new Paladino("Paladino de baixo orçamento"));
-         repoPersonagem.inserir(new Paladino("Mago Gladiador"));
+         personagemController.inserir(new Paladino("Paladino desnutrido"));
+         personagemController.inserir(new Paladino("Paladino de baixo orçamento"));
+         personagemController.inserir(new Paladino("Mago Gladiador"));
       }
       catch (RepositorioException e)
       {
@@ -202,12 +208,18 @@ public class ExecutorTheDungeon
                System.out.println("Digite o Id do personagem que deseja incluir no grupo.");
                idEscolhido = lervalorInteiroTeclado();
 
-               Personagem p = repoPersonagem.buscarPorId(idEscolhido);
-               if (p != null)
-               {
-                  grupoPrincipal.adicionarPersonagem(p);
-                  System.out.printf("%s adicionado ao grupo com sucesso!\n", p.getNome());
-                  personagensAdicionados++;
+               try {
+                  Personagem p = personagemController.buscarPorId(idEscolhido);
+
+                  if (p != null)
+                  {
+                     grupoPrincipal.adicionarPersonagem(p);
+                     System.out.printf("%s adicionado ao grupo com sucesso!\n", p.getNome());
+                     personagensAdicionados++;
+                  }
+                  }
+               catch (RepositorioException e){
+                  System.out.println(e.getMessage());
                }
                break;
             case 0:
@@ -256,7 +268,7 @@ public class ExecutorTheDungeon
       System.out.println("Digite o nome do personagem");
 
       String nomePersongem = scan.nextLine();
-      nomePersongem = null;
+      //nomePersongem = null;
       if (tipoPersonagem == 1)
       {
          if (nomePersongem == null)
@@ -303,12 +315,24 @@ public class ExecutorTheDungeon
       {
          try
          {
-            repoPersonagem.inserir(cadastro);
+            personagemController.inserir(cadastro);
          }
          catch (RepositorioException e)
          {
             System.out.println(e.getMessage());
          }
+      }
+   }
+
+   private static void excluirPersonagem() throws RepositorioException{
+      try {
+         System.out.println("Insira o id do personagem a ser excluido: ");
+         int id = lervalorInteiroTeclado();
+         personagemController.excluir(id);
+         System.out.printf("Personagem de ID %d excluido com sucesso.\n", id);
+      }
+      catch(RepositorioException e){
+         System.out.println(e.getMessage());
       }
    }
 

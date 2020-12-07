@@ -30,32 +30,7 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
    @Override
    public void inserir(Personagem p) throws RepositorioException
    {
-      boolean jaExiste = false;
-      if (p != null)
-      {
-
-         for (Personagem busca : this.listaPersonagens)
-         {
-            if (p.getId()==(busca.getId()))
-            {
-               jaExiste = true;
-               break;
-            }
-         }
-      } else if (p == null)
-      {
-          
-      }
-
-      if (jaExiste)
-      {
-    	 throw new RepositorioException("Este personagem j� est� inserido");
-      }
-      else
-      {
          this.listaPersonagens.add(p);
-      }
-
    }
 
    @Override
@@ -68,22 +43,13 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
             return p;
          }
       }
-
       return null;
    }
 
    @Override
    public void excluir(int id)
    {
-      for (Personagem p : this.listaPersonagens)
-      {
-         if (p.getId()==(id))
-         {
-            listaPersonagens.remove(p);
-            break;
-         }
-      }
-
+      listaPersonagens.remove(buscarPorId(id));
    }
 
    public List<Personagem> getListaPersonagens()
