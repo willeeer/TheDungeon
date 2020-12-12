@@ -1,9 +1,10 @@
 package com.willer.thedungeon.executor;
 
-import com.willer.thedungeon.controller.PersonagemController;
 import com.willer.thedungeon.dados.RepositorioPersonagem;
 import com.willer.thedungeon.exceptions.MenuException;
 import com.willer.thedungeon.exceptions.RepositorioException;
+import com.willer.thedungeon.facade.ITheDungeonFacade;
+import com.willer.thedungeon.facade.TheDungeonFacade;
 import com.willer.thedungeon.factory.PersonagemFactory;
 import com.willer.thedungeon.geral.Grupo;
 import com.willer.thedungeon.geral.personagem.Personagem;
@@ -22,8 +23,7 @@ public class ExecutorTheDungeon
 {
 
    private static final Scanner scan = new Scanner(System.in);
-   private static final RepositorioPersonagem repoPersonagem = RepositorioPersonagem.getInstance();
-   private static final PersonagemController personagemController = PersonagemController.getInstance();
+   private static final ITheDungeonFacade dungeonFacade = new TheDungeonFacade();
    private static final PersonagemFactory factory = new PersonagemFactory();
    public static final String ATRIBUTO_AGILIDADE = "AGI";
    public static final String ATRIBUTO_FORCA = "STR";
@@ -55,7 +55,6 @@ public class ExecutorTheDungeon
          System.out.println(e.getMessage());
 
       }
-
       //Este pedaço de código é só para adiantar os testes
 
       int escolhaMenu;
@@ -77,17 +76,12 @@ public class ExecutorTheDungeon
             switch (escolhaMenu)
             {
                case 1:
-
                   cadastrarPersonagem();
-
                   break;
                case 2:
-
                   listarPersonagens();
-
                   break;
                case 3:
-
                   montarGrupo();
                   break;
                case 4:
@@ -152,17 +146,17 @@ public class ExecutorTheDungeon
    {
       try
       {
-         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_INTELIGENCIA, "Bruxo"));
-         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_INTELIGENCIA, "Gandalf"));
-         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_INTELIGENCIA, "Mr.M"));
+         dungeonFacade.inserirPersonagem(factory.getNewPersonagem(true, ATRIBUTO_INTELIGENCIA, "Bruxo"));
+         dungeonFacade.inserirPersonagem(factory.getNewPersonagem(true, ATRIBUTO_INTELIGENCIA, "Gandalf"));
+         dungeonFacade.inserirPersonagem(factory.getNewPersonagem(true, ATRIBUTO_INTELIGENCIA, "Mr.M"));
 
-         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_AGILIDADE, "Arqueiro vesgo"));
-         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_AGILIDADE, "Legolas"));
-         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_AGILIDADE, "Mago Clérigo"));
+         dungeonFacade.inserirPersonagem(factory.getNewPersonagem(true, ATRIBUTO_AGILIDADE, "Arqueiro vesgo"));
+         dungeonFacade.inserirPersonagem(factory.getNewPersonagem(true, ATRIBUTO_AGILIDADE, "Legolas"));
+         dungeonFacade.inserirPersonagem(factory.getNewPersonagem(true, ATRIBUTO_AGILIDADE, "Mago Clérigo"));
 
-         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_FORCA, "Paladino desnutrido"));
-         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_FORCA, "Paladino de baixo orçamento"));
-         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_FORCA, "Mago Gladiador"));
+         dungeonFacade.inserirPersonagem(factory.getNewPersonagem(true, ATRIBUTO_FORCA, "Paladino desnutrido"));
+         dungeonFacade.inserirPersonagem(factory.getNewPersonagem(true, ATRIBUTO_FORCA, "Paladino de baixo orçamento"));
+         dungeonFacade.inserirPersonagem(factory.getNewPersonagem(true, ATRIBUTO_FORCA, "Mago Gladiador"));
 
          //fase 1
          assassino = (Assassino) factory.getNewPersonagem(false, ATRIBUTO_AGILIDADE, "Kalec");
@@ -230,7 +224,7 @@ public class ExecutorTheDungeon
 
                try
                {
-                  Personagem p = personagemController.buscarPorId(idEscolhido);
+                  Personagem p = dungeonFacade.buscarPersonagem(idEscolhido);
 
                   if (p != null)
                   {
@@ -260,15 +254,13 @@ public class ExecutorTheDungeon
    private static void listarPersonagens() throws RepositorioException
    {
 
-      List<Personagem> listaPersonagens = repoPersonagem.getListaPersonagens();
+      List<Personagem> listaPersonagens = dungeonFacade.recuperaTodosPersonagens();
 
       if (!listaPersonagens.isEmpty())
       {
          for (Personagem p : listaPersonagens)
          {
-
             System.out.println(p.getDescricaoPersonagem());
-
          }
       }
       else
@@ -281,7 +273,7 @@ public class ExecutorTheDungeon
    private static void cadastrarPersonagem() throws MenuException
    {
 
-      Personagem cadastro = null;
+      Personagem cadastro;
 
       System.out.println("Qual heroi deseja cadsatrar?");
       System.out.println("1- Arcanista, 2- Paladino, 3- Ranger");
@@ -333,26 +325,24 @@ public class ExecutorTheDungeon
          throw new MenuException("Valor Inválido");
       }
 
-      if (cadastro != null)
+      try
       {
-         try
-         {
-            personagemController.inserir(cadastro);
-         }
-         catch (RepositorioException e)
-         {
-            System.out.println(e.getMessage());
-         }
+         dungeonFacade.inserirPersonagem(cadastro);
       }
+      catch (RepositorioException e)
+      {
+         System.out.println(e.getMessage());
+      }
+
    }
 
-   private static void excluirPersonagem() throws RepositorioException
+   private static void excluirPersonagem()
    {
       try
       {
          System.out.println("Insira o id do personagem a ser excluido: ");
          int id = lervalorInteiroTeclado();
-         personagemController.excluir(id);
+         dungeonFacade.excluirPersonagem(id);
          System.out.printf("Personagem de ID %d excluido com sucesso.\n", id);
       }
       catch (RepositorioException e)

@@ -87,18 +87,15 @@ public class Grupo
       {
          integranteUm = p;
       }
+      else if (integranteDois == null)
+      {
+         integranteDois = p;
+      }
       else
       {
-         if (integranteDois == null)
+         if (integranteTres == null)
          {
-            integranteDois = p;
-         }
-         else
-         {
-            if (integranteTres == null)
-            {
-               integranteTres = p;
-            }
+            integranteTres = p;
          }
       }
    }

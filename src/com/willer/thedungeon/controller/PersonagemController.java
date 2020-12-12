@@ -4,16 +4,20 @@ import com.willer.thedungeon.dados.RepositorioPersonagem;
 import com.willer.thedungeon.exceptions.RepositorioException;
 import com.willer.thedungeon.geral.personagem.Personagem;
 
+import java.util.List;
+
 public class PersonagemController
 {
 
    private static PersonagemController instance;
+   private static RepositorioPersonagem instanceRepoPersonagem;
 
    public static synchronized PersonagemController getInstance()
    {
       if (instance == null)
       {
          instance = new PersonagemController();
+         instanceRepoPersonagem = RepositorioPersonagem.getInstance();
       }
       return instance;
    }
@@ -24,7 +28,7 @@ public class PersonagemController
       if (p != null)
       {
 
-         for (Personagem busca : RepositorioPersonagem.getInstance().getListaPersonagens())
+         for (Personagem busca : instanceRepoPersonagem.getListaPersonagens())
          {
             if (p.getId() == (busca.getId()))
             {
@@ -50,7 +54,7 @@ public class PersonagemController
 
    public Personagem buscarPorId(int id) throws RepositorioException
    {
-      Personagem p = RepositorioPersonagem.getInstance().buscarPorId(id);
+      Personagem p = instanceRepoPersonagem.buscarPorId(id);
       if (p == null)
       {
          throw new RepositorioException("Personagem não encontrado.");
@@ -62,12 +66,17 @@ public class PersonagemController
    {
       if (this.buscarPorId(id) != null)
       {
-         RepositorioPersonagem.getInstance().excluir(id);
+         instanceRepoPersonagem.excluir(id);
       }
       else
       {
          throw new RepositorioException("Personagem não encontrado.");
       }
+   }
+
+   public List<Personagem> obtemListaPersonagens()
+   {
+      return instanceRepoPersonagem.getListaPersonagens();
    }
 
 }
