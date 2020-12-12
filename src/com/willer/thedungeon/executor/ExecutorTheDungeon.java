@@ -4,6 +4,7 @@ import com.willer.thedungeon.controller.PersonagemController;
 import com.willer.thedungeon.dados.RepositorioPersonagem;
 import com.willer.thedungeon.exceptions.MenuException;
 import com.willer.thedungeon.exceptions.RepositorioException;
+import com.willer.thedungeon.factory.PersonagemFactory;
 import com.willer.thedungeon.geral.Grupo;
 import com.willer.thedungeon.geral.personagem.Personagem;
 import com.willer.thedungeon.geral.personagem.heroi.Arcanista;
@@ -23,6 +24,10 @@ public class ExecutorTheDungeon
    private static final Scanner scan = new Scanner(System.in);
    private static final RepositorioPersonagem repoPersonagem = RepositorioPersonagem.getInstance();
    private static final PersonagemController personagemController = PersonagemController.getInstance();
+   private static final PersonagemFactory factory = new PersonagemFactory();
+   public static final String ATRIBUTO_AGILIDADE = "AGI";
+   public static final String ATRIBUTO_FORCA = "STR";
+   public static final String ATRIBUTO_INTELIGENCIA = "INT";
 
    private static Grupo grupoPrincipal;
    private static DungeonMaster dungeonMaster;
@@ -38,9 +43,19 @@ public class ExecutorTheDungeon
 
       //Este pedaço de código é só para adiantar os testes
       grupoPrincipal = new Grupo();
-      grupoPrincipal.adicionarPersonagem(new Arcanista("ArcTeste"));
-      grupoPrincipal.adicionarPersonagem(new Ranger("RangerTest"));
-      grupoPrincipal.adicionarPersonagem(new Paladino("PalaTeste"));
+
+      try
+      {
+         grupoPrincipal.adicionarPersonagem(factory.getNewPersonagem(true, "INT", "ArcTeste"));
+         grupoPrincipal.adicionarPersonagem(factory.getNewPersonagem(true, "AGI", "RangerTest"));
+         grupoPrincipal.adicionarPersonagem(factory.getNewPersonagem(true, "STR", "PalaTeste"));
+      }
+      catch (MenuException e)
+      {
+         System.out.println(e.getMessage());
+
+      }
+
       //Este pedaço de código é só para adiantar os testes
 
       int escolhaMenu;
@@ -137,38 +152,43 @@ public class ExecutorTheDungeon
    {
       try
       {
-         personagemController.inserir(new Arcanista("Bruxo"));
-         personagemController.inserir(new Arcanista("Gandalf"));
-         personagemController.inserir(new Arcanista("Mr.M"));
+         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_INTELIGENCIA, "Bruxo"));
+         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_INTELIGENCIA, "Gandalf"));
+         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_INTELIGENCIA, "Mr.M"));
 
-         personagemController.inserir(new Ranger("Arqueiro vesgo"));
-         personagemController.inserir(new Ranger("Legolas"));
-         personagemController.inserir(new Ranger("Mago Clérigo"));
+         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_AGILIDADE, "Arqueiro vesgo"));
+         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_AGILIDADE, "Legolas"));
+         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_AGILIDADE, "Mago Clérigo"));
 
-         personagemController.inserir(new Paladino("Paladino desnutrido"));
-         personagemController.inserir(new Paladino("Paladino de baixo orçamento"));
-         personagemController.inserir(new Paladino("Mago Gladiador"));
+         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_FORCA, "Paladino desnutrido"));
+         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_FORCA, "Paladino de baixo orçamento"));
+         personagemController.inserir(factory.getNewPersonagem(true, ATRIBUTO_FORCA, "Mago Gladiador"));
+
+         //fase 1
+         assassino = (Assassino) factory.getNewPersonagem(false, ATRIBUTO_AGILIDADE, "Kalec");
+         assassino.aumentarNivel();
+
+         //fase 2
+         alquimista = (Alquimista) factory.getNewPersonagem(false, ATRIBUTO_INTELIGENCIA, "Albion");
+         for (int i = 0; i < 2; i++)
+         {
+            alquimista.aumentarNivel();
+         }
+
+         //Fase final
+         dungeonMaster = (DungeonMaster) factory.getNewPersonagem(false, ATRIBUTO_FORCA, "Atos");
+         for (int i = 0; i < 4; i++)
+         {
+            dungeonMaster.aumentarNivel();
+         }
       }
       catch (RepositorioException e)
       {
          System.out.println(e.getMessage());
       }
-      //fase 1
-      assassino = new Assassino("Kalec");
-      assassino.aumentarNivel();
-
-      //fase 2
-      alquimista = new Alquimista("Albion");
-      for (int i = 0; i < 2; i++)
+      catch (MenuException e)
       {
-         alquimista.aumentarNivel();
-      }
-
-      //Fase final
-      dungeonMaster = new DungeonMaster("Atos");
-      for (int i = 0; i < 4; i++)
-      {
-         dungeonMaster.aumentarNivel();
+         System.out.println(e.getMessage());
       }
    }
 
@@ -208,7 +228,8 @@ public class ExecutorTheDungeon
                System.out.println("Digite o Id do personagem que deseja incluir no grupo.");
                idEscolhido = lervalorInteiroTeclado();
 
-               try {
+               try
+               {
                   Personagem p = personagemController.buscarPorId(idEscolhido);
 
                   if (p != null)
@@ -217,8 +238,9 @@ public class ExecutorTheDungeon
                      System.out.printf("%s adicionado ao grupo com sucesso!\n", p.getNome());
                      personagensAdicionados++;
                   }
-                  }
-               catch (RepositorioException e){
+               }
+               catch (RepositorioException e)
+               {
                   System.out.println(e.getMessage());
                }
                break;
@@ -324,14 +346,17 @@ public class ExecutorTheDungeon
       }
    }
 
-   private static void excluirPersonagem() throws RepositorioException{
-      try {
+   private static void excluirPersonagem() throws RepositorioException
+   {
+      try
+      {
          System.out.println("Insira o id do personagem a ser excluido: ");
          int id = lervalorInteiroTeclado();
          personagemController.excluir(id);
          System.out.printf("Personagem de ID %d excluido com sucesso.\n", id);
       }
-      catch(RepositorioException e){
+      catch (RepositorioException e)
+      {
          System.out.println(e.getMessage());
       }
    }

@@ -30,7 +30,7 @@ public class RepositorioPersonagem implements IRepositorioPersonagem
    @Override
    public void inserir(Personagem p) throws RepositorioException
    {
-         this.listaPersonagens.add(p);
+      this.listaPersonagens.add(p);
    }
 
    @Override
